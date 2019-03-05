@@ -26,7 +26,6 @@ action "Push Image" {
 workflow "Build" {
   on = "push"
   resolves = [
-    "Push Image",
     "GitHub Action for Docker",
   ]
 }
