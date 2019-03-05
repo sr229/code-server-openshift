@@ -23,14 +23,12 @@ action "Push Image" {
   args = "docker push -t chinodesuuu/coder:latest"
 }
 
-workflow "Build" {
-  on = "push"
-  resolves = [
-    "GitHub Action for Docker",
-  ]
+workflow "Lint PR" {
+  on = "pull_request"
+  resolves = ["GitHub Action for Docker-1"]
 }
 
-action "GitHub Action for Docker" {
+action "GitHub Action for Docker-1" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  args = "build -t chinodesuuuu/coder:latest ."
+  args = "docker build -t pr ."
 }
