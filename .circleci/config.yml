@@ -1,0 +1,43 @@
+version: 2
+notify:
+  webhooks:
+    - url: https://circledisc-clarity.herokuapp.com/webhook/circle
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Image
+          command: docker build -t chinodesuuu/coder:latest .
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build Docker Image
+          command: docker build -t chinodesuuu/coder:latest .
+      - run:
+          name: Docker Push (Theia Latest)
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/coder:latest          
+        
+workflows:
+  version: 2
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 0"
+          filters:
+            branches:
+              only: release
+    jobs:
+      - deploy
+  build-n-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+             - build
+          filters:
+            branches:
+               only: release
