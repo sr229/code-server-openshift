@@ -1,9 +1,9 @@
 workflow "Build and Deploy" {
-  on = "push"
   resolves = [
     "Push Image",
     "GitHub Action for Docker",
   ]
+  on = "release"
 }
 
 action "GitHub Action for Docker" {
@@ -25,10 +25,10 @@ action "Push Image" {
 
 workflow "Lint PR" {
   on = "pull_request"
-  resolves = ["GitHub Action for Docker-1"]
+  resolves = ["Build Image"]
 }
 
-action "GitHub Action for Docker-1" {
+action "Build Image" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  args = "docker build -t pr ."
+  args = "build -t pr ."
 }
