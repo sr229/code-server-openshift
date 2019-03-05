@@ -1,6 +1,9 @@
-workflow "New workflow" {
+workflow "Build and Deploy" {
   on = "push"
-  resolves = ["Push Image"]
+  resolves = [
+    "Push Image",
+    "GitHub Action for Docker",
+  ]
 }
 
 action "GitHub Action for Docker" {
