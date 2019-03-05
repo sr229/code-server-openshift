@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 # Change this line if you need to.
 ARG CODER_VERSION=1.31.0
 RUN apt update && \
