@@ -6,4 +6,4 @@ This is a distribution of Coder's [Visual Studio Code in browser](https://github
 
 Simply pull from `chinodesuuu/coder`. 
 
-After the pull has been done, make sure you bound 
+After the pull has been done, make sure you bound to port 9000 and mount a volume in `/home/coder/projects`.
