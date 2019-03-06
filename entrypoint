@@ -1,5 +1,5 @@
 #!/bin/bash
-export HOME=/home/theia
+export HOME=/home/coder
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 
