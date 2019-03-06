@@ -21,7 +21,7 @@ RUN apt update && \
     touch /etc/sudoers.d/user && \
     echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
     chmod 0440 /etc/sudoers.d/user && \
-    chmod g+rw /home/coder && chmod g+rw /home/projects && \
+    chmod g+rw /home/coder && chmod g+rw /home/coder/projects && \
     chgrp -R 0 /home/coder && \
     chmod -R g=u /home/coder && \
     chmod g=u /etc/passwd;
