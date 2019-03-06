@@ -1,4 +1,4 @@
-FROM debian:sid-slim
+FROM ubuntu:18.04
 # Change this line if you need to.
 ARG CODER_VERSION=1.31.0-20
 RUN apt update && \
