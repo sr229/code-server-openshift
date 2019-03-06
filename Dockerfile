@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 # Change this line if you need to.
-ARG CODER_VERSION=1.31.0
+ARG CODER_VERSION=1.31.0-20
 RUN apt update && \
     apt upgrade -y && \
     apt install -y unzip \
@@ -11,7 +11,7 @@ RUN apt update && \
       git \
       wget && \
     cd /tmp && \
-    wget -O - https://github.com/codercom/code-server/releases/download/code-server-${CODER_VERSION}/${CODER_VERSION}-x86_64-linux.tar.gz | tar -xzvf && \
+    wget -O - https://github.com/codercom/code-server/releases/download/${CODER_VERSION}/code-server-${CODER_VERSION}-x86_64-linux.tar.gz | tar -xzv && \
     chmod -R 755 code-server-${CODER_VERSION}-x86_64-linux/code-server && \
     mv code-server-${CODER_VERSION}-x86_64-linux/code-server /usr/bin/ && \
     rm -rf code-server-${CODER_VERSION}-x86_64-linux && \
