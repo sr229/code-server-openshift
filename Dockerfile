@@ -17,6 +17,8 @@ RUN apt update && \
     rm -rf code-server-${CODER_VERSION}-x86_64-linux && \
     adduser --disabled-password --gecos '' coder && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    mkdir -p /etc/sudoers.d/ && \
+    touch /etc/sudoers.d/user && \
     echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
     chmod 0440 /etc/sudoers.d/user && \
     chmod g+rw /home/coder && chmod g+rw /home/projects && \
