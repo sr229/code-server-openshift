@@ -18,6 +18,7 @@ RUN apt update && \
     adduser --disabled-password --gecos '' coder && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
+    chmod 0440 /etc/sudoers.d/user && \
     chmod g+rw /home/coder && chmod g+rw /home/projects && \
     chgrp -R 0 /home/coder && \
     chmod -R g=u /home/coder && \
