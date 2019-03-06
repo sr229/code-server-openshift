@@ -1,6 +1,6 @@
 FROM debian:sid
 # Change this line if you need to.
-ARG CODER_VERSION=1.31.0-20
+ARG CODER_VERSION=1.31.0
 RUN apt update && \
     apt upgrade -y && \
     apt install -y unzip \
@@ -43,4 +43,4 @@ ENTRYPOINT ["/home/coder/entrypoint"]
 
 EXPOSE 9000
 
-CMD ["code-server", "--port=9000",  "--allow-http", "--no-auth", "/home/coder/projects"]
+CMD ["code-server", "--port=9000", "--host=0.0.0.0" , "--allow-http", "--no-auth", "/home/coder/projects"]
