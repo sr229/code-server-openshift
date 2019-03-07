@@ -7,7 +7,7 @@
 
 if [ -z  "$CODER_ENABLE_AUTH" ]; then
    if [ -z  "$CODER_ENABLE_TLS" ]; then
-      /usr/bin/code-server --port=9000 --allow-http /home/coder/projects;
+      /usr/bin/code-server --no-auth --port=9000 --allow-http /home/coder/projects;
    elif [ -n "$CODER_ENABLE_TLS" ]; then
       case "$CODER_ENABLE_TLS" in
         true)
