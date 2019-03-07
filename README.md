@@ -6,7 +6,12 @@ This is a distribution of Coder's [Visual Studio Code in browser](https://github
 
 ## Running
 
-Simply pull from `chinodesuuu/coder`. 
+We maintain two tags that has a specific container orchestrator usage.
+
+- For OpenShift use the `chinodesuuu/coder:openshift` image.
+- Kubernetes and anything else can use the `chinodesuuu/coder:vanilla`/`chinodesuuu/coder:latest` image.
+
+> Keep in mind that Coder in Kubernetes does not play well with non-PVC mounts, `sudo` tends to fail to work with the volume mount on `hostMount` or NFS volumes, so make sure you set `nosuid` for the mount.
 
 After the pull has been done, make sure you bound to port 9000 and mount a volume in `/home/coder/projects`.
 
