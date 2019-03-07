@@ -6,6 +6,7 @@ RUN apt update && \
     apt install -y unzip \
       build-essential \
       gcc \
+      net-tools \
       clang \
       curl \
       git \
