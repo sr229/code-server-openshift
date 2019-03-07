@@ -7,6 +7,7 @@ COPY exec /opt
 RUN apt update && \
     apt upgrade -y && \
     apt install -y unzip \
+      sudo \
       build-essential \
       gcc \
       net-tools \
