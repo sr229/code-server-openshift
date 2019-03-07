@@ -32,7 +32,8 @@ WORKDIR /home/coder
 USER coder
 
 RUN mkdir -p projects && \
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash;
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
+    sudo chmod -R g+rw projects/;
 
 COPY entrypoint /home/coder
 
