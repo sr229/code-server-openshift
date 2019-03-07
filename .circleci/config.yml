@@ -25,11 +25,7 @@ jobs:
           command: docker build -t chinodesuuu/coder:openshift -f Dockerfile.openshift .
       - run:
           name: Docker Push 
-          command: | 
-            docker login -u $DOCKER_USER -p $DOCKER_PASS && \ 
-            docker push chinodesuuu/coder:latest && \ 
-            docker push chinodesuuu/coder:openshift && \
-            docker push chinodesuuu/coder:vanilla;       
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS &&  docker push chinodesuuu/coder:latest && docker push chinodesuuu/coder:openshift && docker push chinodesuuu/coder:vanilla;
         
 workflows:
   version: 2
