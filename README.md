@@ -9,3 +9,9 @@ This is a distribution of Coder's [Visual Studio Code in browser](https://github
 Simply pull from `chinodesuuu/coder`. 
 
 After the pull has been done, make sure you bound to port 9000 and mount a volume in `/home/coder/projects`.
+
+## Enabling SSL or Auth
+
+to enable auth, make sure you set the environment variable `CODER_ENABLE_AUTH` to true.
+
+to enable SSL, mount your certificates' dir to `/home/coder/certs` and set `CODER_ENABLE_SSL` to true.

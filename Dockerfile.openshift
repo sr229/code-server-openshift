@@ -1,0 +1,53 @@
+FROM debian:sid
+# Change this line if you need to.\
+ARG CODER_VERSION=1.31.0
+
+COPY exec /opt
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y unzip \
+      build-essential \
+      gcc \
+      net-tools \
+      clang \
+      curl \
+      git \
+      wget && \
+    cd /tmp && \
+    wget -O - https://github.com/codercom/code-server/releases/download/${CODER_VERSION}/code-server-${CODER_VERSION}-x86_64-linux.tar.gz | tar -xzv && \
+    chmod -R 755 code-server-${CODER_VERSION}-x86_64-linux/code-server && \
+    mv code-server-${CODER_VERSION}-x86_64-linux/code-server /usr/bin/ && \
+    rm -rf code-server-${CODER_VERSION}-x86_64-linux && \
+    adduser --disabled-password --gecos '' coder && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    mkdir -p /etc/sudoers.d/ && \
+    touch /etc/sudoers.d/user && \
+    echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
+    chmod 0440 /etc/sudoers.d/user && \
+    chmod g+rw /home/coder && \
+    chmod a+x /opt/exec && \
+    chgrp -R 0 /home/coder && \
+    chmod -R g=u /home/coder && \
+    chmod g=u /etc/passwd;
+
+WORKDIR /home/coder
+
+USER coder
+
+RUN mkdir -p projects && mkdir -p certs && \
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
+    sudo chmod -R g+rw projects/ && \
+    sudo chmod -R g+rw certs/;
+
+COPY entrypoint /home/coder
+
+VOLUME ["/home/coder/projects", "/home/coder/certs"];
+
+USER 10001
+
+ENTRYPOINT ["/home/coder/entrypoint"]
+
+EXPOSE 9000
+
+CMD ["code-server", "--port=9000", "--host=0.0.0.0" , "--allow-http", "--no-auth", "/home/coder/projects"]

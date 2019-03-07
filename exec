@@ -1,0 +1,86 @@
+#!/bin/sh
+
+# Special exec script to handle user cases that needs auth or 
+# stuff I can think of.
+
+# check for $CODER_ENABLE_AUTH.
+
+if [ -z  "$CODER_ENABLE_AUTH" ]; then
+   if [ -z  "$CODER_ENABLE_TLS" ]; then
+      exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects";
+   elif [ -n "$CODER_ENABLE_TLS" ]; then
+      case "$CODER_ENABLE_TLS" in
+        true)
+            echo "WARNING: Make sure you mounted your Certificates in /home/coder/certs!"
+            echo "your cert should be named 'coder.crt' and 'coder.key', else the script won't recognize it."
+            exec "$(command -v code-server) --port=9000 --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects"
+            ;;
+        false)
+            exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects"
+            ;;
+        *)
+            exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects"
+            ;;
+        esac
+    fi
+  elif [ -n "$CODER_ENABLE_AUTH" ]; then
+    case "$CODER_ENABLE_AUTH" in
+       true)
+        if [ -z  "$CODER_ENABLE_TLS" ]; then
+           exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects";
+        elif [ -n "$CODER_ENABLE_TLS" ]; then
+           case "$CODER_ENABLE_TLS" in
+             true)
+              echo "WARNING: Make sure you mounted your Certificates in /home/coder/certs!"
+              echo "your cert should be named 'coder.crt' and 'coder.key', else the script won't recognize it."
+              exec "$(command -v code-server) --port=9000 --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects"
+              ;;
+            false)
+              exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects"
+              ;;
+            *)
+              exec "$(command -v code-server) --port=9000 --allow-http /home/coder/projects"
+              ;;
+           esac
+         fi
+       ;;
+    false)
+        if [ -z  "$CODER_ENABLE_TLS" ]; then
+           exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects";
+        elif [ -n "$CODER_ENABLE_TLS" ]; then
+           case "$CODER_ENABLE_TLS" in
+             true)
+              echo "WARNING: Make sure you mounted your Certificates in /home/coder/certs!"
+              echo "your cert should be named 'coder.crt' and 'coder.key', else the script won't recognize it."
+              exec "$(command -v code-server) --no-auth --port=9000 --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects"
+              ;;
+            false)
+              exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects"
+              ;;
+            *)
+              exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects"
+              ;;
+           esac
+         fi
+       ;;
+    *)
+        if [ -z  "$CODER_ENABLE_TLS" ]; then
+           exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects";
+        elif [ -n "$CODER_ENABLE_TLS" ]; then
+           case "$CODER_ENABLE_TLS" in
+             true)
+              echo "WARNING: Make sure you mounted your Certificates in /home/coder/certs!"
+              echo "your cert should be named 'coder.crt' and 'coder.key', else the script won't recognize it."
+              exec "$(command -v code-server) --no-auth --port=9000 --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects"
+              ;;
+            false)
+              exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects"
+              ;;
+            *)
+              exec "$(command -v code-server) --no-auth --port=9000 --allow-http /home/coder/projects"
+              ;;
+           esac
+         fi
+       ;;
+    esac
+fi
