@@ -18,7 +18,8 @@ RUN apt-get update && \
       openssl \
       net-tools \
       git \
-      locales \      
+      locales \ 
+      curl \     
       wget && \
     locale-gen en_US.UTF-8 && \
     cd /tmp && \
@@ -35,7 +36,7 @@ RUN apt-get update && \
     chgrp -R 0 /home/coder && \
     chmod -R g=u /home/coder && \
     chmod g=u /etc/passwd;
-    
+ 
 WORKDIR /home/coder
 
 USER coder
