@@ -6,13 +6,11 @@ ENV LANG=en_US.UTF-8
 
 COPY exec /opt
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y  \
+RUN apt-get update && \
+    apt-get install -y  \
       sudo \
       openssl \
       net-tools \
-      curl \
       git \
       locales \      
       wget && \

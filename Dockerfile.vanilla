@@ -6,13 +6,17 @@ ENV LANG=en_US.UTF-8
 
 COPY exec /opt
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y  \
+ARG CODER_VERSION=1.31.1-100
+
+ENV LANG=en_US.UTF-8
+
+COPY exec /opt
+
+RUN apt-get update && \
+    apt-get install -y  \
       sudo \
       openssl \
       net-tools \
-      curl \
       git \
       locales \      
       wget && \
