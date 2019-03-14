@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM debian:sid-slim
 # Change this line if you need to.\
 ARG CODER_VERSION=1.32.0-245
 
