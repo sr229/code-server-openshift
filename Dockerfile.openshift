@@ -1,6 +1,6 @@
 FROM debian:sid-slim
 # Change this line if you need to.\
-ARG CODER_VERSION=1.32.0-245
+ARG CODER_VERSION=1.32.0-310
 
 ENV LANG=en_US.UTF-8
 
