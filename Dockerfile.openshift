@@ -1,8 +1,9 @@
 FROM debian:sid-slim
-# Change this line if you need to.\
-ARG CODER_VERSION=1.32.0-245
 
 ENV LANG=en_US.UTF-8
+
+#Change this via --arg in Docker CLI
+ARG CODER_VERSION=1.408-vsc1.32.0
 
 COPY exec /opt
 
@@ -19,9 +20,9 @@ RUN apt-get update && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     cd /tmp && \
-    wget -O - https://github.com/codercom/code-server/releases/download/${CODER_VERSION}/code-server-${CODER_VERSION}-linux-x64.tar.gz | tar -xzv && \
-    chmod -R 755 code-server-${CODER_VERSION}-linux-x64/code-server && \
-    mv code-server-${CODER_VERSION}-linux-x64/code-server /usr/bin/ && \
+    wget -O - https://github.com/codercom/code-server/releases/download/${CODER_VERSION}/code-server${CODER_VERSION}-linux-x64.tar.gz | tar -xzv && \
+    chmod -R 755 code-server${CODER_VERSION}-linux-x64/code-server && \
+    mv code-server${CODER_VERSION}-linux-x64/code-server /usr/bin/ && \
     rm -rf code-server-${CODER_VERSION}-linux-x64 && \
     adduser --disabled-password --ingroup sudo --gecos '' coder && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
