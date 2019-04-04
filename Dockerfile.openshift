@@ -2,6 +2,9 @@ FROM debian:sid
 # Change this line if you need to.\
 ARG CODER_VERSION=1.31.0
 
+# adding a sane default is needed since we're not erroring out via exec.
+ENV CODER_PASSWORD "coder"
+
 COPY exec /opt
 
 RUN apt update && \
