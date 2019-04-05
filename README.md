@@ -10,6 +10,7 @@ We maintain two tags that has a specific container orchestrator usage.
 
 - For OpenShift use the `chinodesuuu/coder:openshift` image.
 - Kubernetes and anything else can use the `chinodesuuu/coder:vanilla`/`chinodesuuu/coder:latest` image.
+- A codercom-like stack is `chinodesuuu/coder:ubuntu` image. This does not work in OpenShift, unfortunately.
 
 > Keep in mind that Coder in Kubernetes does not play well with non-PVC mounts, `sudo` tends to fail to work with the volume mount on `hostMount` or NFS volumes, so make sure you set `nosuid` for the mount.
 
