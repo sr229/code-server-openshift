@@ -19,7 +19,9 @@ After the pull has been done, make sure you bound to port 9000 and mount a volum
 
 to enable auth, make sure you set the environment variable `CODER_ENABLE_AUTH` to true.
 
-to enable SSL, mount your certificates' dir to `/home/coder/certs` and set `CODER_ENABLE_SSL` to true.
+when `CODER_ENABLE_AUTH` is set to true, you must provide your password via `CODER_PASSWORD` else, it defaults to "coder".
+
+To enable SSL, mount your certificates' dir to `/home/coder/certs` and set `CODER_ENABLE_SSL` to true.
 
 Keep in mind for SSL, your files should be named as follows:
 
