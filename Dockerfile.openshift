@@ -28,7 +28,8 @@ RUN apt-get update && \
     mv code-server${CODER_VERSION}-linux-x64/code-server /usr/bin/ && \
     rm -rf code-server-${CODER_VERSION}-linux-x64 && \
     adduser --disabled-password --gecos '' coder   && \
-    echo '%sudo ALL=(ALL:ALL) ALL' >> /etc/sudoers && \
+    echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd && \
     chmod g+rw /home/coder && \
     chmod a+x /opt/exec && \
     chgrp -R 0 /home/coder && \
