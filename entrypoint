@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 export HOME=/home/coder
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/dumb-init /bin/sh
 
 # Special exec script to handle user cases that needs auth or 
 # stuff I can think of.

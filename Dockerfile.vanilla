@@ -1,17 +1,11 @@
 FROM debian:sid-slim
 
-ENV LANG=en_US.UTF-8
-
-COPY exec /opt
+ENV LANG=en_US.UTF-8 \
+    # adding a sane default is needed since we're not erroring out via exec.
+     CODER_PASSWORD="coder"
 
 #Change this via --arg in Docker CLI
 ARG CODER_VERSION=1.408-vsc1.32.0
-
-ENV LANG=en_US.UTF-8
-
-# adding a sane default is needed since we're not erroring out via exec.
-ENV CODER_PASSWORD "coder"
-
 
 COPY exec /opt
 
@@ -22,7 +16,8 @@ RUN apt-get update && \
       net-tools \
       git \
       locales \ 
-      curl \     
+      curl \
+      dumb-init \     
       wget && \
     locale-gen en_US.UTF-8 && \
     apt clean && \
@@ -35,12 +30,7 @@ RUN apt-get update && \
     adduser --disabled-password --ingroup sudo --gecos '' coder && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
-    chmod 0440 /etc/sudoers.d/user && \
-    chmod g+rw /home/coder && \
-    chmod a+x /opt/exec && \
-    chgrp -R 0 /home/coder && \
-    chmod -R g=u /home/coder && \
-    chmod g=u /etc/passwd;
+    chmod 0440 /etc/sudoers.d/user;
  
 WORKDIR /home/coder
 
@@ -49,8 +39,7 @@ USER coder
 RUN mkdir -p projects && mkdir -p certs && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash && \
     sudo chmod -R g+rw projects/ && \
-    sudo chmod -R g+rw certs/ && \
-    sudo chmod -R g+rw .nvm;
+    sudo chmod -R g+rw certs/;
 
 VOLUME ["/home/coder/projects", "/home/coder/certs"];
 
