@@ -5,7 +5,7 @@ ENV LANG=en_US.UTF-8 \
      CODER_PASSWORD="coder"
 
 #Change this via --arg in Docker CLI
-ARG CODER_VERSION=1.408-vsc1.32.0
+ARG CODER_VERSION=1.939-vsc1.33.1
 
 COPY exec /opt
 
@@ -15,9 +15,9 @@ RUN apt-get update && \
       openssl \
       net-tools \
       git \
-      locales \ 
+      locales \
       curl \
-      dumb-init \     
+      dumb-init \
       wget && \
     locale-gen en_US.UTF-8 && \
     apt clean && \
@@ -30,7 +30,7 @@ RUN apt-get update && \
     adduser --disabled-password --gecos '' coder  && \
     echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd;
- 
+
 WORKDIR /home/coder
 
 USER coder

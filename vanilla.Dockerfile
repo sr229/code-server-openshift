@@ -5,7 +5,7 @@ ENV LANG=en_US.UTF-8 \
      CODER_PASSWORD="coder"
 
 #Change this via --arg in Docker CLI
-ARG CODER_VERSION=1.408-vsc1.32.0
+ARG CODER_VERSION=1.939-vsc1.33.1
 
 COPY exec /opt
 
