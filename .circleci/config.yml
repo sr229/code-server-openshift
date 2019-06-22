@@ -11,6 +11,9 @@ jobs:
           name: Build Docker Image (Vanilla)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
+          name: Build Docker Image (Satlus Test Image)
+          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f satlus.Dockerfile .
+      - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
       - run:
@@ -24,6 +27,9 @@ jobs:
           name: Build Docker Image (Vanilla)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
+          name: Build Docker Image (Satlus Test Image)
+          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f satlus.Dockerfile .
+      - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
       - run:
@@ -31,7 +37,7 @@ jobs:
           command: docker build -t chinodesuuu/coder:ubuntu -f ubuntu.Dockerfile .
       - run:
           name: Docker Push 
-          command: docker login -u $DOCKER_USER -p $DOCKER_PASS &&  docker push chinodesuuu/coder:latest && docker push chinodesuuu/coder:openshift && docker push chinodesuuu/coder:vanilla && docker push chinodesuuu/coder:ubuntu;
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS &&  docker push chinodesuuu/coder:latest && docker push chinodesuuu/coder:openshift && docker push chinodesuuu/coder:vanilla && docker push chinodesuuu/coder:ubuntu && docker push chinodesuuu/coder:satlus;
         
 workflows:
   version: 2
