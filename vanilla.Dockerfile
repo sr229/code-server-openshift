@@ -1,4 +1,4 @@
-FROM debian:sid-slim
+FROM debian:buster
 
 ENV LANG=en_US.UTF-8 \
     # adding a sane default is needed since we're not erroring out via exec.
