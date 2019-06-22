@@ -1,6 +1,6 @@
 # Dockerfile based from satlus's PR.
 # Intended for testing purposes, see PR: https://github.com/cdr/code-server/pull/640
-FROM debian:buster
+FROM debian:buster-slim
 
 ENV LANG=en_US.UTF-8 \
     # adding a sane default is needed since we're not erroring out via exec.
