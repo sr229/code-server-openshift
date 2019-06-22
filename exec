@@ -32,13 +32,13 @@ if [ -z  "$CODER_ENABLE_AUTH" ]; then
              true)
               echo "WARNING: Make sure you mounted your Certificates in /home/coder/certs!"
               echo "your cert should be named 'coder.crt' and 'coder.key', else the script won't recognize it."
-              /usr/bin/code-server --port=9000 --password="$CODER_PASSWORD" --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects
+              PASSWORD="$CODER_PASSWORD" /usr/bin/code-server --port=9000 --cert=/home/coder/certs/coder.crt --cert-key=/home/coder/certs/coder.key /home/coder/projects
               ;;
             false)
-              /usr/bin/code-server --port=9000 --password="$CODER_PASSWORD" --allow-http /home/coder/projects
+              PASSWORD="$CODER_PASSWORD" /usr/bin/code-server --port=9000 --allow-http /home/coder/projects
               ;;
             *)
-              /usr/bin/code-server --port=9000 --password="$CODER_PASSWORD" --allow-http /home/coder/projects
+              PASSWORD="$CODER_PASSWORD" /usr/bin/code-server --port=9000 --allow-http /home/coder/projects
               ;;
            esac
          fi
