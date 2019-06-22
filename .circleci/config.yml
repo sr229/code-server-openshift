@@ -12,7 +12,7 @@ jobs:
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
           name: Build Docker Image (Satlus Test Image)
-          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f satlus.Dockerfile .
+          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:satlus -f satlus.Dockerfile .
       - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
@@ -28,7 +28,7 @@ jobs:
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
           name: Build Docker Image (Satlus Test Image)
-          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f satlus.Dockerfile .
+          command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:satlus -f satlus.Dockerfile .
       - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
