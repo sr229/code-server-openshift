@@ -1,0 +1,30 @@
+#!/usr/bin/dumb-init /bin/sh
+
+# Special exec script to handle user cases that needs auth or 
+# stuff I can think of.
+
+# check for $CODER_ENABLE_AUTH.
+case "${CODER_ENABLE_AUTH}" in
+  true)
+    case "${CODER_ENABLE_TLS}" in
+      true)
+        PASSWORD="${CODER_PASSWORD}" \
+        /usr/bin/code-server --port=9000 --cert=/home/coder/certs/cert.crt --cert-key=/home/coder/certs/cert.key
+        ;;
+      *)
+        PASSWORD="${CODER_PASSWORD}" \
+        /usr/bin/code-server --port=9000
+        ;;
+    esac
+    ;;
+  *)
+    case "${CODER_ENABLE_TLS}" in
+      true)
+        /usr/bin/code-server --port=9000 --cert=/home/coder/certs/cert.crt --cert-key=/home/coder/certs/cert.key
+        ;;
+      *)
+        /usr/bin/code-server --port=9000
+        ;;
+    esac
+    ;;
+esac

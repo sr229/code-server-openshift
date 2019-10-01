@@ -11,11 +11,17 @@ jobs:
           name: Build Docker Image (Vanilla)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
+          name: Build Docker Image (v2)
+          command: docker build -t chinodesuuu/coder:v2 -t chinodesuuu/coder:che-v2 -f v2.dockerfile .
+      - run:
           name: Build Docker Image (Satlus Test Image)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:satlus -f satlus.Dockerfile .
       - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
+      - run:
+          name: Build Docker Image (OpenShift v2)
+          command: docker build -t chinodesuuu/coder:openshift-v2 -f v2-openshift.Dockerfile .
       - run:
           name: Build Docker Image (Ubuntu)
           command: docker build -t chinodesuuu/coder:ubuntu -f ubuntu.Dockerfile .
@@ -27,17 +33,23 @@ jobs:
           name: Build Docker Image (Vanilla)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:latest -f vanilla.Dockerfile .
       - run:
+          name: Build Docker Image (v2)
+          command: docker build -t chinodesuuu/coder:v2 -t chinodesuuu/coder:che-v2 -f v2.dockerfile .
+      - run:
           name: Build Docker Image (Satlus Test Image)
           command: docker build -t chinodesuuu/coder:vanilla -t chinodesuuu/coder:satlus -f satlus.Dockerfile .
       - run:
           name: Build Docker Image (OpenShift)
           command: docker build -t chinodesuuu/coder:openshift -f openshift.Dockerfile .
       - run:
+          name: Build Docker Image (OpenShift v2)
+          command: docker build -t chinodesuuu/coder:openshift-v2 -f v2-openshift.Dockerfile .
+      - run:
           name: Build Docker Image (Ubuntu)
           command: docker build -t chinodesuuu/coder:ubuntu -f ubuntu.Dockerfile .
       - run:
           name: Docker Push 
-          command: docker login -u $DOCKER_USER -p $DOCKER_PASS &&  docker push chinodesuuu/coder:latest && docker push chinodesuuu/coder:openshift && docker push chinodesuuu/coder:vanilla && docker push chinodesuuu/coder:ubuntu && docker push chinodesuuu/coder:satlus;
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS &&  docker push chinodesuuu/coder:latest && docker push chinodesuuu/coder:openshift && docker push chinodesuuu/coder:vanilla && docker push chinodesuuu/coder:ubuntu && chinodesuuu/coder:openshift-v2 && chinodesuuu/coder:v2 && chinodesuuu/coder:che-v2 && docker push chinodesuuu/coder:satlus;
         
 workflows:
   version: 2
