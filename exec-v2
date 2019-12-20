@@ -20,10 +20,10 @@ case "${CODER_ENABLE_AUTH}" in
   *)
     case "${CODER_ENABLE_TLS}" in
       true)
-        /usr/bin/code-server --port=9000 --cert=/home/coder/certs/cert.crt --cert-key=/home/coder/certs/cert.key
+        /usr/bin/code-server --port=9000 --cert=/home/coder/certs/cert.crt --cert-key=/home/coder/certs/cert.key --auth=none
         ;;
       *)
-        /usr/bin/code-server --port=9000
+        /usr/bin/code-server --port=9000 --auth=none
         ;;
     esac
     ;;

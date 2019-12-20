@@ -60,4 +60,6 @@ ENTRYPOINT ["/home/coder/entrypoint"]
 
 EXPOSE 9000
 
+WORKDIR /projects
+
 CMD [ "dumb-init", "/usr/bin/code-server", "--port=9000", "/projects"]
